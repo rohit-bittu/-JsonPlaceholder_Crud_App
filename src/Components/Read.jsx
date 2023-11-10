@@ -12,7 +12,7 @@ const Read = () => {
 
     useEffect(() => {
         dispatch(getPosts())
-        dispatch(deletePost())
+       
     }, [dispatch])
     return (
         <section id="team" className="pb-5">

@@ -62,12 +62,19 @@ const postsSlice = createSlice({
                 state.error = action.error.message;
             })
             // updating a post
+            .addCase(editPost.pending, (state, action) => {
+                state.status = 'loading';
+            })
             .addCase(editPost.fulfilled, (state, action) => {
                 const updatedPost = action.payload;
                 const index = state.Data.findIndex((post) => post.id === updatedPost.id);
                 if (index !== -1) {
                     state.Data[index] = updatedPost;
                 }
+            })
+            .addCase(editPost.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
             })
             // deleting a post
             .addCase(deletePost.pending, (state, action) => {
